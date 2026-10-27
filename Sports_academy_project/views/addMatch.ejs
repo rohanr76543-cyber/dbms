@@ -1,0 +1,43 @@
+<%- include('partials/header') %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Matches</p>
+    <h2><%= match ? 'Edit Match' : 'Add Match' %></h2>
+  </div>
+</section>
+
+<form class="form-card" method="POST" action="<%= formAction %>">
+  <label>Date
+    <input type="date" name="DATE" value="<%= match ? new Date(match.DATE).toISOString().slice(0, 10) : '' %>" required>
+  </label>
+  <label>Ground
+    <input type="text" name="GROUND" value="<%= match ? match.GROUND : '' %>" required>
+  </label>
+  <label>Home Team
+    <select name="HOME_TEAM_ID" required>
+      <option value="">Select Home Team</option>
+      <% teams.forEach(team => { %>
+        <option value="<%= team.TEAM_ID %>" <%= match && match.HOME_TEAM_ID === team.TEAM_ID ? 'selected' : '' %>>
+          <%= team.TEAM_NAME %>
+        </option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Away Team
+    <select name="AWAY_TEAM_ID" required>
+      <option value="">Select Away Team</option>
+      <% teams.forEach(team => { %>
+        <option value="<%= team.TEAM_ID %>" <%= match && match.AWAY_TEAM_ID === team.TEAM_ID ? 'selected' : '' %>>
+          <%= team.TEAM_NAME %>
+        </option>
+      <% }) %>
+    </select>
+  </label>
+  <div class="form-actions">
+    <button class="btn primary" type="submit">Save</button>
+    <a class="btn secondary" href="/matches">Cancel</a>
+  </div>
+</form>
+
+<%- include('partials/footer') %>

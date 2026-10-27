@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Scores</p>
+    <h2><%= score ? 'Edit Score' : 'Add Score' %></h2>
+  </div>
+</section>
+
+<form class="form-card" method="POST" action="<%= formAction %>">
+  <label>Match
+    <select name="MATCH_ID" required>
+      <option value="">Select Match</option>
+      <% matches.forEach(match => { %>
+        <option value="<%= match.MATCH_ID %>" <%= score && score.MATCH_ID === match.MATCH_ID ? 'selected' : '' %>>
+          #<%= match.MATCH_ID %> - <%= match.HOME_TEAM %> vs <%= match.AWAY_TEAM %>
+        </option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Home Score
+    <input type="number" name="HOME_SCORE" value="<%= score ? score.HOME_SCORE : '' %>" min="0" required>
+  </label>
+  <label>Away Score
+    <input type="number" name="AWAY_SCORE" value="<%= score ? score.AWAY_SCORE : '' %>" min="0" required>
+  </label>
+  <label>Win Team
+    <input type="text" name="WIN_TEAM" value="<%= score ? score.WIN_TEAM : '' %>" required>
+  </label>
+  <div class="form-actions">
+    <button class="btn primary" type="submit">Save</button>
+    <a class="btn secondary" href="/scores">Cancel</a>
+  </div>
+</form>
+
+<%- include('partials/footer') %>

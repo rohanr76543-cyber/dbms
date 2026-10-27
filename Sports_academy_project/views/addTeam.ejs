@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Teams</p>
+    <h2><%= team ? 'Edit Team' : 'Add Team' %></h2>
+  </div>
+</section>
+
+<form class="form-card" method="POST" action="<%= formAction %>">
+  <label>Team Name
+    <input type="text" name="TEAM_NAME" value="<%= team ? team.TEAM_NAME : '' %>" required>
+  </label>
+  <label>Coach Name
+    <input type="text" name="COACH_NAME" value="<%= team ? team.COACH_NAME : '' %>" required>
+  </label>
+  <label>Home Ground
+    <input type="text" name="HOME_GROUND" value="<%= team ? team.HOME_GROUND : '' %>" required>
+  </label>
+  <div class="form-actions">
+    <button class="btn primary" type="submit">Save</button>
+    <a class="btn secondary" href="/teams">Cancel</a>
+  </div>
+</form>
+
+<%- include('partials/footer') %>

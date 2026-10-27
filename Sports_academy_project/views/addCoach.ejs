@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Coaches</p>
+    <h2><%= coach ? 'Edit Coach' : 'Add Coach' %></h2>
+  </div>
+</section>
+
+<form class="form-card" method="POST" action="<%= formAction %>">
+  <label>Coach Name
+    <input type="text" name="COACH_NAME" value="<%= coach ? coach.COACH_NAME : '' %>" required>
+  </label>
+  <label>Experience
+    <input type="number" name="EXPERIENCE" value="<%= coach ? coach.EXPERIENCE : '' %>" min="0" required>
+  </label>
+  <label>Coach Age
+    <input type="number" name="COACH_AGE" value="<%= coach ? coach.COACH_AGE : '' %>" min="18" required>
+  </label>
+  <label>Team
+    <select name="TEAM_ID" required>
+      <option value="">Select Team</option>
+      <% teams.forEach(team => { %>
+        <option value="<%= team.TEAM_ID %>" <%= coach && coach.TEAM_ID === team.TEAM_ID ? 'selected' : '' %>>
+          <%= team.TEAM_NAME %>
+        </option>
+      <% }) %>
+    </select>
+  </label>
+  <div class="form-actions">
+    <button class="btn primary" type="submit">Save</button>
+    <a class="btn secondary" href="/coaches">Cancel</a>
+  </div>
+</form>
+
+<%- include('partials/footer') %>

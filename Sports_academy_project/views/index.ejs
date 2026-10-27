@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Dashboard</p>
+    <h2>Sports Tournament Management System</h2>
+  </div>
+</section>
+
+<% if (typeof pageError !== 'undefined') { %>
+  <div class="alert error"><%= pageError %></div>
+<% } %>
+
+<section class="stats-grid">
+  <article class="stat-card">
+    <span>Total Teams</span>
+    <strong><%= counts.teams %></strong>
+  </article>
+  <article class="stat-card">
+    <span>Total Players</span>
+    <strong><%= counts.players %></strong>
+  </article>
+  <article class="stat-card">
+    <span>Total Coaches</span>
+    <strong><%= counts.coaches %></strong>
+  </article>
+  <article class="stat-card">
+    <span>Total Matches</span>
+    <strong><%= counts.matches %></strong>
+  </article>
+</section>
+
+<section class="quick-actions">
+  <a class="action-card" href="/teams/add">Add Team</a>
+  <a class="action-card" href="/players/add">Add Player</a>
+  <a class="action-card" href="/matches/add">Add Match</a>
+  <a class="action-card" href="/scores/add">Add Score</a>
+</section>
+
+<%- include('partials/footer') %>

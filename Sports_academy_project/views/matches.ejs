@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Manage</p>
+    <h2>Matches</h2>
+  </div>
+  <a class="btn primary" href="/matches/add">Add Match</a>
+</section>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Ground</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% matches.forEach(match => { %>
+        <tr>
+          <td><%= match.MATCH_ID %></td>
+          <td><%= new Date(match.DATE).toISOString().slice(0, 10) %></td>
+          <td><%= match.GROUND %></td>
+          <td><%= match.HOME_TEAM %></td>
+          <td><%= match.AWAY_TEAM %></td>
+          <td class="actions">
+            <a href="/matches/edit/<%= match.MATCH_ID %>">Edit</a>
+            <a class="danger delete-link" href="/matches/delete/<%= match.MATCH_ID %>">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('partials/footer') %>
